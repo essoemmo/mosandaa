@@ -3,7 +3,7 @@
 use App\Http\Controllers\API\AccountController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\AuthDropdownController;
-use App\Http\Controllers\API\CartController;
+use App\Http\Controllers\API\SettingController;
 use App\Http\Controllers\API\HomeKidController;
 use App\Http\Controllers\API\HomeSellerController;
 use App\Http\Controllers\API\NotificationController;
@@ -21,14 +21,12 @@ Route::post('reset', [AuthController::class, 'resetCode']); //reset_code
 Route::post('resend', [AuthController::class, 'resendCode']); //resend_code
 Route::post('reset-password', [AuthController::class, 'resetPassword']); //reset password
 Route::post('login', [AuthController::class, 'Login']); //login
+Route::get('settings',         [SettingController::class,'index']); //relations
 
-
-    Route::get('cities',           [AuthDropdownController::class,'cities']); //cities
-    Route::get('languages',        [AuthDropdownController::class,'langs']); //langs
-    Route::get('nationals',        [AuthDropdownController::class,'nationals']); //nationals
-    Route::get('relations',        [AuthDropdownController::class,'relations']); //relations
-    Route::get('settings',         [\App\Http\Controllers\API\SettingController::class,'index']); //relations
-    Route::post('scan',            [\App\Http\Controllers\API\KidController::class,'scan']); //relations
+// list of drops
+Route::get('cities', [SettingController::class, 'cities']); //cities
+Route::get('areas/{id}', [SettingController::class, 'areas']); //states
+Route::get('states/{id}', [SettingController::class, 'states']); //states
 
 
 Route::middleware(['auth:sanctum' , 'bindings'])->group( function () {

@@ -30,7 +30,6 @@
                 </a>
             </li>
 
-
             @if(Auth::guard('admin')->user()->hasPermission('users-read'))
             <li class="nav-item {{ URL::route('users.index') === URL::current() ? 'active' : '' }}">
                 <a class="d-flex align-items-center" href="{{route('users.index')}}"><i data-feather='users'></i><span
@@ -40,39 +39,28 @@
             </li>
             @endif
 
-            @if(Auth::guard('admin')->user()->hasPermission('users-read'))
-            <li class="nav-item {{ URL::route('sellers') === URL::current() ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href="{{route('sellers')}}"><i data-feather='target'></i><span
-                        style="font-family: cairo;" class="menu-title text-truncate"
-                        data-i18n="City">@lang('admin.sellers')</span>
-                </a>
-            </li>
-            @endif
-
-            @if(Auth::guard('admin')->user()->hasPermission('users-read'))
-            <li class="nav-item {{ URL::route('requests') === URL::current() ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href="{{route('requests')}}"><i data-feather='navigation'></i><span
-                        style="font-family: cairo;" class="menu-title text-truncate"
-                        data-i18n="City">@lang('admin.requests')</span>
-                </a>
-            </li>
-            @endif
-
-
-            @if(Auth::guard('admin')->user()->hasPermission('users-read'))
-            <li class="nav-item {{ URL::route('organizations') === URL::current() ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href="{{route('organizations')}}"><i data-feather='codepen'></i><span
-                        style="font-family: cairo;" class="menu-title text-truncate"
-                        data-i18n="City">@lang('admin.organizations')</span>
-                </a>
-            </li>
-            @endif
-
             @if(Auth::guard('admin')->user()->hasPermission('admins-read'))
             <li class="nav-item {{ URL::route('admins.index') === URL::current() ? 'active' : '' }}">
                 <a class="d-flex align-items-center" href="{{route('admins.index')}}"><i data-feather="user"></i><span
                         style="font-family: cairo;" class="menu-title text-truncate"
                         data-i18n="Admin">@lang('admin.admins')</span>
+                </a>
+            </li>
+            @endif
+
+            @if(Auth::guard('admin')->user()->hasPermission('services-read'))
+            <li class="nav-item {{ URL::route('services.index') === URL::current() ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{route('services.index')}}"><i data-feather="user"></i><span
+                        style="font-family: cairo;" class="menu-title text-truncate"
+                        data-i18n="Admin">@lang('admin.services')</span>
+                </a>
+            </li>
+            @endif
+            @if(Auth::guard('admin')->user()->hasPermission('orders-read'))
+            <li class="nav-item {{ URL::route('admins.index') === URL::current() ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{route('admins.index')}}"><i data-feather="user"></i><span
+                        style="font-family: cairo;" class="menu-title text-truncate"
+                        data-i18n="Admin">@lang('admin.orders')</span>
                 </a>
             </li>
             @endif
@@ -91,33 +79,6 @@
                 <a class="d-flex align-items-center" href="{{route('cities.index')}}"><i data-feather='truck'></i><span
                         style="font-family: cairo;" class="menu-title text-truncate"
                         data-i18n="about">@lang('admin.cities')</span>
-                </a>
-            </li>
-            @endif
-
-            @if(Auth::guard('admin')->user()->hasPermission('nationals-read'))
-            <li class="nav-item {{ URL::route('nationals.index') === URL::current() ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href="{{route('nationals.index')}}"><i data-feather='file-minus'></i><span
-                        style="font-family: cairo;" class="menu-title text-truncate"
-                        data-i18n="about">@lang('admin.nationals')</span>
-                </a>
-            </li>
-            @endif
-
-            @if(Auth::guard('admin')->user()->hasPermission('languages-read'))
-            <li class="nav-item {{ URL::route('languages.index') === URL::current() ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href="{{route('languages.index')}}"><i data-feather='type'></i><span
-                        style="font-family: cairo;" class="menu-title text-truncate"
-                        data-i18n="about">@lang('admin.languages')</span>
-                </a>
-            </li>
-            @endif
-
-            @if(Auth::guard('admin')->user()->hasPermission('relations-read'))
-            <li class="nav-item {{ URL::route('relations.index') === URL::current() ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href="{{route('relations.index')}}"><i data-feather='move'></i><span
-                        style="font-family: cairo;" class="menu-title text-truncate"
-                        data-i18n="about">@lang('admin.relations')</span>
                 </a>
             </li>
             @endif

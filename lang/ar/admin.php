@@ -490,5 +490,5 @@ return [
     'cost_after_tax' => 'التكلفه بعد الضريبه',
     'cost_after_discount' => 'التكلفه بعد الخصم',
     'numbTickets' => 'عدد التزاكر',
-
+    'Please fill in all required fields' => 'يرجى ملء جميع الحقول المطلوبة',
 ];

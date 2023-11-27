@@ -30,39 +30,16 @@ Route::get('states/{id}', [SettingController::class, 'states']); //states
 
 
 Route::middleware(['auth:sanctum' , 'bindings'])->group( function () {
-    //SELLER
-    Route::get('home-seller',                 [HomeSellerController::class, 'index']); // home
-    Route::post('post-order',                 [OrderController::class, 'post']); // post order
-    Route::get('order-seller/{id}',           [OrderController::class, 'order']); // get order
-    Route::get('get-kid/{id}',                [HomeSellerController::class, 'getKid']); // view getKid
-    Route::post('post-account',               [AccountController::class, 'post']); // post order
-    Route::get('draw-request',                [HomeSellerController::class, 'drawRequest']); // get account
 
-    //KID
-    Route::get('home-kid',                    [HomeKidController::class, 'index']); // home
-    Route::get('order-kid/{id}',              [OrderController::class, 'order_kid']); // get order
+    // user setting
 
-    //Organization
-    Route::post('organization-scan-kids',     [OrganizationController::class, 'scan']); // organization-scan-kids
-    Route::get('organization-home',          [OrganizationController::class, 'home']); // organization-home
-    Route::get('organization-attendance',      [OrganizationController::class, 'attendance']); // organization-attendance
-    Route::get('organization-leave',          [OrganizationController::class, 'leave']); // organization-leave
-    Route::get('organization-attendanceLeave',          [OrganizationController::class, 'attendanceLeave']); // organization-attendance and Leave
+    Route::get('logout', [AuthController::class, 'logout']); // logout
+    Route::post('user-update', [AuthController::class, 'update']); //update user
+    Route::get('user-profile', [AuthController::class, 'profile']); // user
+    Route::get('user-delete', [AuthController::class, 'delete']); //delete user
+
     
-    /*                  KIDS ROUTES                               */
-    Route::get('kids' ,                        [\App\Http\Controllers\API\KidController::class , 'index']);
-    Route::get('kids/{kid}' ,                  [\App\Http\Controllers\API\KidController::class , 'show']);
-    Route::post('kids' ,                       [\App\Http\Controllers\API\KidController::class , 'store']);
-    Route::post('kids/update/{kid}' ,                       [\App\Http\Controllers\API\KidController::class , 'update']);
-    Route::post('kids/charges/{kid}' ,         [\App\Http\Controllers\API\KidController::class , 'charge']);
-    Route::get('kids/charges/{kid}' ,               [\App\Http\Controllers\API\KidController::class , 'chargeHistory']);
-    Route::get('kids/orders/{kid}' ,               [\App\Http\Controllers\API\KidController::class , 'orders']);
-    Route::get('kids/scans/{kid}' ,               [\App\Http\Controllers\API\KidController::class , 'scans']);
-
-    /*    PARENT ROUTES        */
-    Route::post('parent/update-profile',[\App\Http\Controllers\API\ParentController::class,'updateProfile']);
-    Route::get('parent/transactions' , [\App\Http\Controllers\API\ParentController::class , 'transactions']);
-
+    
     Route::get('notifications',         [NotificationController::class,'userNotifications']);
     Route::post('delete-notification',  [NotificationController::class,'DeleteNotification']);
 });

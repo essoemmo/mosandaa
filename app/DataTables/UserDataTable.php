@@ -70,7 +70,7 @@ class UserDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->query()->where('type_id',1)->orderByDesc('id');
+        return $model->query()->where('verified',1)->orderByDesc('id');
     }
 
     /**
@@ -107,14 +107,11 @@ class UserDataTable extends DataTable
         return [
             'id' => ['title' => 'ID', 'data' => 'id'],
             'name' => ['title' =>  __('admin.name'), 'data' => 'name'],
-            'id_number' => ['title' =>  __('admin.id_number'), 'data' => 'id_number'],
             'email' => ['title' =>  __('admin.email'), 'data' => 'email'],
             'phone' => ['title' =>  __('admin.phone'), 'data' => 'phone'],
             'code' => ['title' =>  __('admin.code'), 'data' => 'code'],
-            'birthday' => ['title' =>  __('admin.birthday'), 'data' => 'birthday'],
-            'balance' => ['title' =>  __('admin.balance'), 'data' => 'balance'],
-            'active' => ['title' =>  __('admin.active'), 'data' => 'active'],
-            'action' => ['title' =>  __('admin.kids'), 'data' => 'action'],
+            // 'active' => ['title' =>  __('admin.active'), 'data' => 'active'],
+            'action' => ['title' =>  __('admin.details'), 'data' => 'action'],
         ];
     }
 

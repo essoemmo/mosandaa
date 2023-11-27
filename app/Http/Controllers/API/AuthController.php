@@ -109,4 +109,32 @@ class AuthController extends Controller
          };
      }
 
+      //logout
+    public function logout(Request $request)
+    {
+        auth('api')->user()->currentAccessToken()->delete();
+        auth('api')->user()->fcmTokens()->whereFcmToken($request->fcm_token)->delete();
+        return self::successResponse(__('application.loggedout'));
+    }
+
+     // update user
+     public function update(UpdateUserRequest $request): \Illuminate\Http\JsonResponse
+     {
+         $user = auth('api')->user();
+         $userData = $request->safe()->except(['attachments', 'socials']);
+ 
+         if ($request->attachments) {
+             $user->assignAttachment($request->attachments);
+         }
+
+ 
+         $user->update($userData);
+ 
+         if ($user->type->value == 1 && $user->id_number && $user->email && $user->address && $user->job) {
+             $user->update(['is_complete' => 1]);
+         }
+         $user->token = $user->createToken('PersonalAccessToken')->plainTextToken;
+         return self::successResponse(__('application.updated'), UserResource::make($user));
+     }
+
 }

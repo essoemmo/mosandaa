@@ -494,6 +494,7 @@ return [
     "add_activities"=>"Add Activities",
     "chapter"=>"chapter",
     'cost_after_tax' => ' Cost After Tax',
+    'Please fill in all required fields' => 'Please fill in all required fields',
 
 
 ];

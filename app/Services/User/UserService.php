@@ -12,7 +12,8 @@ class UserService
    
     public function storeUserDetails(array $data , int $userId):void
     {
-        UserDetails::create([
+        
+        UserDetails::firstOrCreate([
 
             'user_id'=> $userId,
             'id_number'=> $data['id_number'] ?? null,

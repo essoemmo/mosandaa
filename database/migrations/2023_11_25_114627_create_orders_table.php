@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('subservice_id');
             $table->foreign('subservice_id')->references('id')->on('subservices')->onDelete('cascade');
             $table->date('date');
+            $table->json('status');
             $table->time('time');
             $table->decimal('tax', 10, 2);
             $table->decimal('total_before_tax', 10, 2);

@@ -15,16 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('nationality');
-            $table->string('sponsor_name');
-            $table->string('national_address');
-            $table->date('date_of_entering');
-            $table->string('passport_number');
-            $table->decimal('salary', 10, 2);
-            $table->string('sponsor_residence');
-            $table->string('labor_city');
-            $table->string('id_number');
-            $table->date('date_of_birth');
+            $table->string('nationality')->nullable();
+            $table->string('sponsor_name')->nullable();
+            $table->string('national_address')->nullable();
+            $table->date('date_of_entering')->nullable();
+            $table->string('passport_number')->nullable();
+            $table->decimal('salary', 10, 2)->nullable();
+            $table->string('sponsor_residence')->nullable();
+            $table->string('labor_city')->nullable();
+            $table->string('id_number')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->timestamps();
         });
     }

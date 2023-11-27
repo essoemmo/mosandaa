@@ -20,6 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->string('meet_link');
+            $table->integer('type');
+            $table->integer('case_language');
             $table->timestamps();
         });
     }

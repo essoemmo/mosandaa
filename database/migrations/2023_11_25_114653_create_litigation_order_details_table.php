@@ -14,11 +14,22 @@ return new class extends Migration
         Schema::create('litigation_order_details', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
+            $table->longText('description');
+            $table->longText('legitimate_documents')->nullable();
+            $table->longText('statutory_documents')->nullable();
+            $table->longText('legal_recommendation')->nullable();
+            $table->json('strong_points')->nullable();
+            $table->json('weakness_points')->nullable();
             $table->string('defendants_name');
+            $table->text('Jurisdiction')->nullable();
             $table->string('owner_case');
             $table->string('prosecutor');
             $table->string('id_number_accused');
+            $table->string('nationality_accused');
+            $table->integer('type');
+            $table->boolean('admin_review')->default(false);
+            $table->integer('case_language');
+            $table->boolean('need_to_arbitration')->default(false);
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->timestamps();

@@ -2,15 +2,12 @@
 
 namespace App\Exceptions;
 
-use App\Traits\ResponseTrait;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Validation\ValidationException;
 use Throwable;
 use Illuminate\Auth\AuthenticationException;
 
 class Handler extends ExceptionHandler
 {
-    use ResponseTrait;
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -52,31 +49,21 @@ class Handler extends ExceptionHandler
         });
     }
 
-    public function render($request, Throwable $e)
-    {
-        if ($e instanceof ValidationException) {
-            return self::faildResponse(422 , $e->getMessage());
-        }
-        return parent::render($request, $e);
-    }
-
     protected function unauthenticated($request, AuthenticationException $exception) {
-
         if ($request->expectsJson()) {
             return response()->json(['message' => $exception->getMessage()], 401);
         }
-
+    
         $guard = $exception->guards()[0];
 
         switch ($guard) {
             case 'admin':
                 return redirect()->guest(route('admin.login'));
             break;
-
+    
             default:
                 return redirect()->guest(route('login'));
             break;
           }
     }
 }
-

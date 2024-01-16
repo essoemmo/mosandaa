@@ -5,14 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-    <meta name="description" content="Mosanda admin">
-    <meta name="keywords" content="Mosanda admin">
+    <meta name="description" content="I'm Here admin">
+    <meta name="keywords" content="I'm Here admin">
     <meta name="author" content="">
     <title>@lang('admin.adminwebsiteTitle')</title>
     <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('AdminS/assets_ar/app-assets/images/ico/herew.png')}}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
         <!-- BEGIN: Vendor CSS-->
         <link rel="stylesheet" type="text/css"
@@ -31,10 +32,12 @@
             href="{{ asset('AdminS/assets_ar/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css') }}"></script>
         <link rel="stylesheet" type="text/css"
             href="{{ asset('AdminS/assets_ar/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css') }}">
+            <link rel="stylesheet" type="text/css"
+                href="{{ asset('AdminS/assets_ar/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css') }}">
         <link rel="stylesheet" type="text/css"
-            href="{{ asset('AdminS/assets_ar/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css') }}">
-        <link rel="stylesheet" type="text/css" 
-            href="{{ asset('AdminS/assets_ar/app-assets/vendors/css/charts/apexcharts.css') }}">
+            href="{{ asset('AdminS/assets_ar/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css') }}">
+        <link rel="stylesheet" type="text/css"
+            href="{{ asset('AdminS/assets_ar/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css') }}">
         <!-- END: Vendor CSS-->
     @if (app()->getlocale() == 'ar')
 
@@ -96,8 +99,12 @@
             href="{{ asset('AdminS/assets_en/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css') }}"></script>
         <link rel="stylesheet" type="text/css"
             href="{{ asset('AdminS/assets_en/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css') }}">
+            <link rel="stylesheet" type="text/css"
+                href="{{ asset('AdminS/assets_en/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css') }}">
         <link rel="stylesheet" type="text/css"
-            href="{{ asset('AdminS/assets_en/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css') }}">
+            href="{{ asset('AdminS/assets_en/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css') }}">
+        <link rel="stylesheet" type="text/css"
+            href="{{ asset('AdminS/assets_en/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css') }}">
         <!-- END: Vendor CSS-->
 
         <!-- BEGIN: Theme CSS-->
@@ -148,6 +155,35 @@
         font-family: 'Cairo';
         /* font-size: 18px; */
     }
+    .btn .badge{
+        background-color: red;
+        right: 8px;
+        position: absolute;
+        top: 5px;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    .dropdown-item .badge{
+        background-color: red;
+        left: 8px;
+        position: absolute;
+        top: 5px;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    .dropdown-item{
+        position: relative;
+    }
 </style>
 </head>
 
@@ -171,8 +207,26 @@
                    @endif
                 </ul>
             </div>
-
+            <?php 
+                $JobRequestCount=App\Models\JobRequest::where('is_read',0)->count();
+                $ServiceRequestCount=App\Models\ServiceRequest::where('is_read',0)->count();
+                $RateCount=App\Models\Rate::where('active',0)->count();
+                $ContactCount=App\Models\ContactUs::count();
+                $totalNotification=$JobRequestCount+$ServiceRequestCount+$RateCount+$ContactCount;
+            ?>
             <ul class="nav navbar-nav align-items-center ml-auto">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-bell" style="font-size: 20px;"></i>
+                    <span class="badge">{{$totalNotification}}</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{route('request_service.index')}}">@lang('admin.request_services') <span class="badge"> {{$ServiceRequestCount}}</span></a>
+                    <a class="dropdown-item" href="{{route('request_jobs.index')}}">@lang('admin.request_jobs') <span class="badge">{{$JobRequestCount}}</span></a>
+                    <a class="dropdown-item" href="{{route('rates.index')}}">@lang('admin.customer_reviews') <span class="badge">{{$RateCount}}</span></a>
+                    <a class="dropdown-item" href="{{route('contactus.index')}}">@lang('admin.contactus') <span class="badge">{{$ContactCount}}</span></a>
+                </div>
+            </div>
                     <a class="nav-link dropdown-toggle dropdown-user-link"
                         id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -190,6 +244,7 @@
                     </div>
                
             </ul>
+            
         </div>
     </nav>
     <!-- END: Header-->

@@ -30,6 +30,10 @@ class ContactController extends BaseAdminController
         $contact = ContactUs::whereId($id)->delete();
         return response()->json(['status'=>'success']);
     }
-
+    public function contactusactive(Request $request)
+    {
+        $con = ContactUs::find($request->contactus_id)->update(['active' => $request->active]);
+        return response()->json(['status' => 'success', 'data' => $con]);
+    }
 
 }

@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -20,8 +19,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
-    // for Admin
-    public const ADMINHOME = 'admin/home';
+            // for Admin
+            public const ADMINHOME = 'admin/home';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -35,15 +34,15 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(function () {
             Route::middleware('api')
                 ->prefix('api')
-                ->middleware('lang')
                 ->group(base_path('routes/api.php'));
-
-            Route::middleware('admin')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/admin.php'));
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+
+            Route::middleware('admin')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin.php'));
+
         });
     }
 

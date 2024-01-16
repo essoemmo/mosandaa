@@ -99,6 +99,35 @@
              }
            });
         })
+        
+        
+          $('body').on('click','#check',function () {
+            //e.preventDefault();
+            var active = $(this).prop('checked') == true ? 1 : 0; 
+            var contactus_id = $(this).data('id');
+            $.ajax({
+                url:'{{ route('contactusactive') }}',
+                type:'GET',
+                data:{
+                    'active': active,
+                    'contactus_id': contactus_id
+                },
+                success: function (response) {
+                if (response.status == 'success'){
+                        toastr.options =
+                        {
+                            "closeButton" : true,
+                            "progressBar" : true,
+                            "showDuration": 500, 
+                            // "rtl": isRtl 
+                        }
+                        toastr['success']("@lang('admin.statuschange')");
+                $('.contactus-table').DataTable().ajax.reload();
+
+                    }
+                }
+            });
+        });
 
 </script>   
 

@@ -2,59 +2,30 @@
 
 namespace App\Models;
 
-use App\Enums\DaycareStatusEnum;
-use App\Enums\DaycareTypeEnum;
-use App\Enums\UserTypeEnum;
-use App\Traits\HasAttachment;
-use Carbon\Carbon;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laratrust\Traits\LaratrustUserTrait;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasAttachment;
+    use LaratrustUserTrait;
+    use HasApiTokens, HasFactory, Notifiable;
 
-    protected $table = 'users';
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 
-    protected $guarded = [];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-    public $timestamps = true;
-
-    // protected array $dates = ['deleted_at'];
-
-    protected $hidden = ['create_at', 'updated_at', 'deleted_at'];
-
-    
-
-    public function phone(): Attribute
-    {
-
-        return Attribute::make(
-            get: fn($value) => $value !== null ? '+966' . $value : null,
-        );
-    }
-
-// scopes
-
-// relations
-    public function fcmTokens(): HasMany
-    {
-        return $this->hasMany(Token::class);
-    }
-
-    public function userDetails(): HasOne
-    {
-        return $this->hasOne(UserDetails::class);
-    }
-   
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

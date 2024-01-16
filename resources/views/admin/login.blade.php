@@ -6,11 +6,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-    <meta name="description" content="Mosanda Admin">
-    <meta name="keywords" content="Mosanda Admin">
-    <meta name="author" content="Mosanda">
+    <meta name="description" content="RCPA">
+    <meta name="keywords" content="RCPA">
+    <meta name="author" content="RCPA">
     <title> @lang('admin.adminwebsiteTitle')</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('AdminS/assets_ar/app-assets/images/ico/here.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('AdminS/assets_ar/app-assets/images/ico/rcpa.png')}}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
     @if (app()->getlocale() == 'ar')
     <!-- BEGIN: Vendor CSS-->
@@ -87,7 +87,7 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="javascript:void(0);" class="brand-logo">
-                                    <img src="{{asset('AdminS/assets_ar/app-assets/images/logo/logo.png')}}" alt="" style="text-align: center;width: 80%;margin-left: -10%;margin-bottom: -14%;margin-top: -17%;">
+                                    <img src="{{asset('AdminS/assets_ar/app-assets/images/logo/rcpa.png')}}" alt="" style="text-align: center;margin-left: -10%;">
                                 </a>
 
                                 <h4 class="card-title mb-1" style="text-align: center;">@lang('admin.welcome') 👋</h4>
@@ -117,7 +117,7 @@
                                             <label class="custom-control-label" for="remember" > @lang('admin.remember') </label>
                                         </div>
                                     </div>
-                                    <button class="btn btn-gradient-success btn-block" tabindex="4"> <i data-feather='log-in'></i> @lang('admin.login')</button>
+                                    <button class="btn btn-gradient-primary btn-block" tabindex="4"> <i data-feather='log-in'></i> @lang('admin.login')</button>
                                 </form>
 
                                 <p class="text-center mt-2">

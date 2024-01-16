@@ -135,4 +135,13 @@ class AdminDataTable extends DataTable
         ];
     }
 
+    /**
+     * Get filename for export.
+     *
+     * @return string
+     */
+    protected function filename()
+    {
+        return 'Admin_' . date('YmdHis');
+    }
 }

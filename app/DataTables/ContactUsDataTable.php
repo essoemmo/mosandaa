@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\ContactU;
 use App\Models\ContactUs;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Html\Button;
@@ -22,7 +23,33 @@ class ContactUsDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addIndexColumn()
+            ->addIndexColumn()->editColumn('active', function ($query) {
+                if ($query->active) {
+                    $btn = '
+                    <div align="center">
+                        <label class="switch">
+                        <input data-id="' . $query->id . '" type="checkbox" id="check" checked>
+                            <div class="slider round">
+                                <span class="on">ON</span>
+                                <span class="off">OFF</span>
+                            </div>
+                        </label>
+                    </div>';
+                } else {
+                    $btn = '
+                    <div align="center">
+                        <label class="switch">
+                        <input data-id="' . $query->id . '" type="checkbox" id="check">
+                            <div class="slider round">
+                                <span class="on">ON</span>
+                                <span class="off">OFF</span>
+                            </div>
+                        </label>
+                    </div>';
+                }
+
+                return $btn;
+            })
             ->addColumn('action', function($row){
 
             if (Auth::guard('admin')->user()->hasPermission('contactus-read')){
@@ -43,8 +70,11 @@ class ContactUsDataTable extends DataTable
                 $btn = $btn. '<button class="btn btn-danger btn-xs disabled"><i data-feather="trash-2"></i></button>';
             }
               return $btn;
-            })
-                ->rawColumns(['action']);
+            })->setRowClass(function ($query) {
+                if($query->active == 0){
+                    return 'alert-primary';
+                }})
+                ->rawColumns(['action','active']);
     }
 
     /**
@@ -69,7 +99,7 @@ class ContactUsDataTable extends DataTable
                     ->setTableId('contactus-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                   //->dom('Bfrtip')
+                   //->dom('Blfrtip')
                    ->parameters([
                     "processing" => true,
                     "serverSide" => true,
@@ -81,7 +111,7 @@ class ContactUsDataTable extends DataTable
                    "language" => '{"url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Arabic.json"}',
                 ])
                 ->orderBy(0);
-              
+
     }
 
     /**
@@ -94,10 +124,21 @@ class ContactUsDataTable extends DataTable
         return [
             'id' => ['title' => 'ID', 'data' => 'id'],
             'phone' => ['title' =>  __('admin.phone'), 'data' => 'phone'],
+            'name' => ['title' =>  __('admin.name'), 'data' => 'name'],
+            'email' => ['title' =>  __('admin.email'), 'data' => 'email'],
             'description' => ['title' =>  __('admin.description'), 'data' => 'description'],
+              'active' => ['title' =>  __('admin.active'), 'data' => 'active'],
             'action' => ['title' =>  __('admin.action'), 'data' => 'action'],
         ];
     }
 
-
+    /**
+     * Get filename for export.
+     *
+     * @return string
+     */
+    protected function filename()
+    {
+        return 'ContactUs_' . date('YmdHis');
+    }
 }

@@ -2,8 +2,13 @@
 
 return [
     'rcpa' => 'RCPA',
-    'seoDesc' => 'Our practical experience exceeds thirty years, since our establishment until now To our clients, a group of distinguished professional services such as auditing accounts Professional advice, zakat, tax and accounting services Judicial, internal audit, and other miscellaneous services.',
+    'seoDesc' => 'Our practical experience exceeds thirty years, since our establishment until now
+To our clients, a group of distinguished professional services such as auditing accounts
+Professional advice, zakat, tax and accounting services
+Judicial, internal audit, and other miscellaneous services.',
     'main' => 'Main Menu',
+    'send' => 'send',
+       'sex' => 'Sex',
     'home' => 'Home',
     'aboutus' => 'About Us',
     'contactUs' => 'Contact Us',
@@ -29,6 +34,8 @@ return [
     'serreq' => ' Service Request',
     'name' => 'Name',
     'comment' => 'Comment',
+        'limited' =>  'Limited liability',
+    'open' => 'Open shareholding', 
     'save' => 'Save',
     'reviewdesc' => 'Add your comment from here',
     'bookdesc' => 'You can download the brochure fro here',
@@ -81,11 +88,12 @@ return [
     'now' => 'Apply for a currently posted job',
     'future' => 'Apply for potential future jobs',
     'training' => 'training opportunity',
-    'jobaddress' => 'Job Address',
+    'jobaddress' => 'Job Title',
     'jobtype' => 'Job Type',
     'jobnumb' => 'Job Number',
     'jobcity' => 'Job City',
-
+    'share' => 'Share Link',
+    'copied' => 'Link Copied !',
     'male' => 'Male',
     'female' => 'Female',
     'national' => 'national',
@@ -108,18 +116,7 @@ return [
     'responsdesc' => 'Social Responsibility',
     'contadd' => 'You massage send send successfully',
     'contactUsdes' => 'You can contact us from here',
+    'rates'=>'rates',
+    'comments'=>'comments',
 
-
-    // New Translations
-
-    'categories' => 'Categories',
-    'ar' => 'ع',
-    'en' => 'En',
-    'flash_orders' => 'Flash Orders',
-    'latest_products' => 'Latest Products',
-    'best_sell' => 'Best Sell',
-    'login' => 'Login',
-    'register' => 'Register',
-    'offers' => 'Offers',
-    'all' => 'Show All',
 ];

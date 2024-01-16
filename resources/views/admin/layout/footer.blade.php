@@ -1,7 +1,7 @@
 
 <!-- BEGIN: Footer-->
 <footer class="footer footer-static footer-light">
-    <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; {{ now()->year }} <a class="ml-25" href="#" target="_blank">Dine-In</a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
+    <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; {{ now()->year }} <a class="ml-25" href="#" target="_blank">RCPA</a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
 </footer>
 <button class="btn btn-dark btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
 <!-- END: Footer-->
@@ -15,6 +15,14 @@
 <script src="{{asset('AdminS/assets_ar/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('AdminS/assets_ar/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('AdminS/assets_ar/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js')}}"></script>
+<script src="{{asset('AdminS/assets_ar/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js')}}"></script>
+<script src="{{asset('AdminS/assets_ar/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
+<script src="{{asset('AdminS/assets_ar/app-assets/vendors/js/tables/datatable/jszip.min.js')}}"></script>
+<script src="{{asset('AdminS/assets_ar/app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
+<script src="{{asset('AdminS/assets_ar/app-assets/vendors/js/tables/datatable/vfs_fonts.js')}}"></script>
+<script src="{{asset('AdminS/assets_ar/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
+<script src="{{asset('AdminS/assets_ar/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
+<script src="{{asset('AdminS/assets_ar/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js')}}"></script>
 <!-- BEGIN Vendor JS-->
 
 <!-- BEGIN: Page Vendor JS-->
@@ -34,6 +42,7 @@
 <script src="{{asset('AdminS/assets_ar/app-assets/js/scripts/tables/table-datatables-basic.js')}}"></script>
 <script src="{{asset('AdminS/assets_ar/app-assets/js/scripts/extensions/ext-component-sweet-alerts.js')}}"></script>
 <script src="{{asset('AdminS/assets_ar/app-assets/js/scripts/forms/form-select2.js')}}"></script>
+<script src="{{asset('AdminS/assets_ar/app-assets/js/scripts/tables/table-datatables-basic.js')}}"></script>
 <!-- END: Page JS-->
 
 <script>
@@ -51,6 +60,7 @@
 <script src="{{asset('AdminS/parsley/parsley.min.js')}}"></script>
 <script src="{{asset('AdminS/i18n/ar.js')}}"></script>
 
+<script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
 @else
 
 <!-- BEGIN: Vendor JS-->
@@ -62,6 +72,14 @@
 <script src="{{asset('AdminS/assets_en/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('AdminS/assets_en/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('AdminS/assets_en/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js')}}"></script>
+<script src="{{asset('AdminS/assets_en/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js')}}"></script>
+<script src="{{asset('AdminS/assets_en/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
+<script src="{{asset('AdminS/assets_en/app-assets/vendors/js/tables/datatable/jszip.min.js')}}"></script>
+<script src="{{asset('AdminS/assets_en/app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
+<script src="{{asset('AdminS/assets_en/app-assets/vendors/js/tables/datatable/vfs_fonts.js')}}"></script>
+<script src="{{asset('AdminS/assets_en/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
+<script src="{{asset('AdminS/assets_en/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
+<script src="{{asset('AdminS/assets_en/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js')}}"></script>
 <!-- BEGIN Vendor JS-->
 
 <!-- BEGIN: Page Vendor JS-->
@@ -82,6 +100,7 @@
 <script src="{{asset('AdminS/assets_en/app-assets/js/scripts/tables/table-datatables-basic.js')}}"></script>
 <script src="{{asset('AdminS/assets_en/app-assets/js/scripts/extensions/ext-component-sweet-alerts.js')}}"></script>
 <script src="{{asset('AdminS/assets_en/app-assets/js/scripts/forms/form-select2.js')}}"></script>
+<script src="{{asset('AdminS/assets_en/app-assets/js/scripts/tables/table-datatables-basic.js')}}"></script>
 <!-- END: Page JS-->
 
 <script>
@@ -97,11 +116,17 @@
 
 {{--parsly--}}
 <script src="{{asset('AdminS/parsley/parsley.min.js')}}"></script>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
 @endif
 
 @stack('js')
 
-
+{{-- <script>
+$(document).ready(function(){
+   feather.replace();
+});
+</script> --}}
 <script>
 // image preview
 

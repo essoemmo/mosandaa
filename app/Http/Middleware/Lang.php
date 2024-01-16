@@ -9,7 +9,7 @@ class Lang
 {
     public function handle(Request $request, Closure $next)
     {
-        $request->header('lang') == 'en' ? app()->setLocale('en') : app()->setLocale('ar');
+    $request->header('lang') == 'en' ? app()->setLocale('en') : app()->setLocale('ar');
 			return $next($request);
     }
 }

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\RoleDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreRole;
-use App\Http\Requests\Admin\UpdateRole;
+use App\Http\Requests\StoreRole;
+use App\Http\Requests\UpdateRole;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -18,7 +18,7 @@ class RoleController extends BaseAdminController
 
     public function index(RoleDataTable $roles)
     {
-        $models = ['admins','roles','users','cities','languages','nationals','relations','aboutus','terms','usages','privecy','settings','contactus'];
+    $models = ['admins','roles','sections','categories','rates','request_jobs','request_service','ads','branches','consults','cons_details','settings','contactus'];
 
         $actions = ['create', 'read', 'update', 'delete'];
 
@@ -37,7 +37,7 @@ class RoleController extends BaseAdminController
 
     public function edit($id)
     {
-        $models = ['admins','roles','users','cities','languages','nationals','relations','aboutus','terms','usages','privecy','settings','contactus'];
+        $models = ['admins','roles','sections','categories','rates','request_jobs','request_service','ads','branches','consults','cons_details','settings','contactus'];
 
         $actions = ['create', 'read', 'update', 'delete'];
 
@@ -52,7 +52,7 @@ class RoleController extends BaseAdminController
         $role->update($request->only('name'));
 
         $role->syncPermissions($request->permissions);
-        
+
         session()->flash('success', __('admin.updatesuccessfully'));
         return redirect()->route('roles.index');
     }

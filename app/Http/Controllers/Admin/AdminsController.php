@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\AdminDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreAdmin;
-use App\Http\Requests\Admin\UpdateAdmin;
+use App\Http\Requests\StoreAdmin;
+use App\Http\Requests\UpdateAdmin;
 use App\Models\Admin;
 use App\Models\Role;
 use Illuminate\Http\Request;

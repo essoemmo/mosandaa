@@ -3,15 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\UpdateSetting;
+use App\Http\Requests\UpdateSetting;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use App\DataTables\SubscripDataTable;
 
 class SettingController extends BaseAdminController
 {
     public function __construct()
     {
         $this->permissionsAdmin('settings',$read = true, $create = false, $update = true, $delete = false);
+    }
+    
+    public function subscrips(SubscripDataTable $ads)
+    {
+        return $ads->render('admin.subscrips.index');
     }
 
     public function index()

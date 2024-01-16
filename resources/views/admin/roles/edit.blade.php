@@ -48,16 +48,16 @@
                                                  <th>@lang('admin.model')</th>
                                                  <th>@lang('admin.permissions')</th>
                                              </tr>
-                                             @foreach($models as $index=>$model)
-                                             @if($model == 'settings' || $model == 'aboutus' || $model == 'terms' || $model == 'privacy' || $model == 'usages' || $model == 'sections')
-                                             <?php $actions = ['read','update']; ?>
-                                             @endif
-                                             @if($model == 'rates')
-                                             <?php $actions = ['read','update','delete']; ?>
-                                             @endif
-                                             @if($model == 'contactus')
-                                             <?php $actions = ['read','delete']; ?>
-                                             @endif
+                                              @foreach($models as $index=>$model)
+                            @if($model == 'settings' )
+                            <?php $actions = ['read','update']; ?>
+                            @endif
+                            @if($model == 'rates'|| $model == 'sections')
+                            <?php $actions = ['read','update','delete']; ?>
+                            @endif
+                            @if($model == 'contactus')
+                            <?php $actions = ['read','delete']; ?>
+                            @endif
                                              <tr>
                                                  <td style="width:5%">{{$index+1}}</td>
                                                  <td style="width:5%">@lang('admin.'.$model)</td>
